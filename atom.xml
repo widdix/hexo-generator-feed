@@ -6,9 +6,9 @@
   {% if config.feed.hub %}<link href="{{ config.feed.hub | uriencode }}" rel="hub"/>{% endif %}
   <link href="{{ url | uriencode }}"/>
   {% if posts.first().date_update %}
-  <updated>{{ posts.first().date_update.toISOString() }}</updated>
+  <updated>{{ posts.first().date_update.toDate().toISOString() }}</updated>
   {% else %}
-  <updated>{{ posts.first().date.toISOString() }}</updated>
+  <updated>{{ posts.first().date.toDate().toISOString() }}</updated>
   {% endif %}
   <id>{{ url }}</id>
   {% if config.author %}
@@ -23,9 +23,9 @@
     <title>{{ post.title }}</title>
     <link href="{{ (url + post.path) | uriencode }}"/>
     <id>{{ url + post.path }}</id>
-    <published>{{ post.date.toISOString() }}</published>
+    <published>{{ post.date.toDate().toISOString() }}</published>
     {% if post.date_update %}
-    <updated>{{ post.date_update.toISOString() }}</updated>
+    <updated>{{ post.date_update.toDate().toISOString() }}</updated>
     {% endif %}
     {% if config.feed.content and post.content %}
     <content type="html"><![CDATA[{{ post.content | safe }}]]></content>
